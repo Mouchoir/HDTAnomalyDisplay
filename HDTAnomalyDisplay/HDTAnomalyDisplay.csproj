@@ -66,8 +66,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>powershell.exe -Command "Copy-Item 'D:\Developpement\HDTAnomalyDisplay\HDTAnomalyDisplay\bin\Debug\HDTAnomalyDisplay.dll' -Destination '%25AppData%25\HearthstoneDeckTracker\Plugins\' -Force; Start-Process '%25LocalAppData%25\HearthstoneDeckTracker\HearthstoneDeckTracker.exe'"
-</PostBuildEvent>
+    <PostBuildEvent>powershell.exe -Command "Copy-Item '.\HDTAnomalyDisplay.dll' -Destination '%25AppData%25\HearthstoneDeckTracker\Plugins\' -Force; Start-Process '%25LocalAppData%25\HearthstoneDeckTracker\HearthstoneDeckTracker.exe'"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>powershell.exe -Command "if (Get-Process HearthstoneDeckTracker -ErrorAction SilentlyContinue) { Stop-Process -Name HearthstoneDeckTracker -Force }"
