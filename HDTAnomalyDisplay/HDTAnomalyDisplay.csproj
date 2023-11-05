@@ -53,16 +53,7 @@
   <ItemGroup>
     <Compile Include="AnomalyDisplay.cs" />
     <Compile Include="AnomalyDisplayPlugin.cs" />
-    <Compile Include="AnomalyTooltipPanel.xaml.cs">
-      <DependentUpon>AnomalyTooltipPanel.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NormalView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="AnomalyTooltipPanel.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
