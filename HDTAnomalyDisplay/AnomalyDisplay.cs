@@ -48,8 +48,8 @@ namespace HDTAnomalyDisplay
                 cardImage = new CardImage();
 
                 Core.OverlayCanvas.Children.Add(cardImage);
-                Canvas.SetBottom(cardImage, 400);
-                Canvas.SetRight(cardImage, 20);
+                Canvas.SetBottom(cardImage, 50);
+                Canvas.SetLeft(cardImage, 0);
                 cardImage.Visibility = System.Windows.Visibility.Visible;
             }
 

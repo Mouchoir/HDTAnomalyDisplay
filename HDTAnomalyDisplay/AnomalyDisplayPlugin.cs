@@ -14,9 +14,9 @@ namespace HDTAnomalyDisplay
         public string ButtonText => "NO SETTINGS";
         // public string ButtonText => Strings.GetLocalized("");
 
-        public string Author => "Mouchoir";
+        public string Author => "Mouchoir & Tignus";
 
-        public Version Version => new Version(0, 2);
+        public Version Version => new Version(1, 0);
 
         public MenuItem MenuItem => null;
 
