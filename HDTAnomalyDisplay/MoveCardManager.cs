@@ -4,6 +4,7 @@ using System;
 using System.Windows.Controls;
 using System.Windows;
 using Hearthstone_Deck_Tracker.Controls;
+using Hearthstone_Deck_Tracker.Utility;
 
 namespace HDTAnomalyDisplay
 {
@@ -57,14 +58,6 @@ namespace HDTAnomalyDisplay
 
         private void MouseInputOnLmbUp(object sender, EventArgs eventArgs)
         {
-            var pos = User32.GetMousePos();
-            var p = Core.OverlayCanvas.PointFromScreen(new Point(pos.X, pos.Y));
-            if (_selected)
-            {
-                Settings.Default.AnomalyCardTop = p.Y;
-                Settings.Default.AnomalyCardTop = p.X;
-            }
-
             _selected = false;
         }
 
@@ -77,8 +70,29 @@ namespace HDTAnomalyDisplay
 
             var pos = User32.GetMousePos();
             var p = Core.OverlayCanvas.PointFromScreen(new Point(pos.X, pos.Y));
-            Canvas.SetTop(_card, p.Y);
-            Canvas.SetLeft(_card, p.X);
+
+            // TODO check max height and width, does not work yet
+            if (p.Y < 0)
+            {
+                p.Y = 0;
+            }
+            else if (p.Y > Core.OverlayCanvas.Height)
+            {
+
+                p.Y = Core.OverlayCanvas.Height;
+            }
+
+            if (p.X < 0)
+            {
+                p.X = 0;
+            }
+            else if (p.X > Core.OverlayCanvas.Width)
+            {
+                p.X = Core.OverlayCanvas.Width;
+            }
+
+            Settings.Default.AnomalyCardTop = p.Y;
+            Settings.Default.AnomalyCardLeft = p.X;
         }
 
         private bool PointInsideControl(Point p, FrameworkElement control)

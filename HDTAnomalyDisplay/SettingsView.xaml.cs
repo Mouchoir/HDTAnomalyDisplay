@@ -40,9 +40,6 @@ namespace HDTAnomalyDisplay
         public SettingsView()
         {
             InitializeComponent();
-            BtnUnlock.Content = AnomalyDisplay.MoveManager.isUILocked() ? "Unlock overlay" : "Lock overlay";
-            /*            LoadSettings();
-            */
         }
         public IEnumerable<Orientation> OrientationTypes => Enum.GetValues(typeof(Orientation)).Cast<Orientation>();
 
@@ -58,7 +55,9 @@ namespace HDTAnomalyDisplay
 
         private void BtnReset_Click(object sender, RoutedEventArgs e)
         {
-
+            Settings.Default.AnomalyCardLeft = 0;
+            Settings.Default.AnomalyCardTop = 630;
+            Settings.Default.Save();
         }
         /*        private void BtnUnlock_Click(object sender, RoutedEventArgs e)
                 {

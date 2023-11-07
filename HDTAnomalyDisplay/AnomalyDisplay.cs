@@ -63,11 +63,13 @@ namespace HDTAnomalyDisplay
 
             CardImage.SetCardIdFromCard(Database.GetCardFromDbfId(cardDbfId, false));
         }
-  
+
         // On scaling change update the card
         private void SettingsChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             CardImage.RenderTransform = new ScaleTransform(Settings.Default.AnomalyCardScale / 100, Settings.Default.AnomalyCardScale / 100);
+            Canvas.SetTop(CardImage, Settings.Default.AnomalyCardTop);
+            Canvas.SetLeft(CardImage, Settings.Default.AnomalyCardLeft);
         }
 
         public async void HandleGameStart()
@@ -98,7 +100,7 @@ namespace HDTAnomalyDisplay
         {
             CardImage.SetCardIdFromCard(null);
             Core.OverlayCanvas.Children.Remove(CardImage);
-            
+
             MoveManager.Dispose();
             Settings.Default.PropertyChanged -= SettingsChanged;
 

@@ -26,7 +26,6 @@ namespace HDTAnomalyDisplay
 
         public void OnLoad()
         {
-            Settings.Default.Save();
             anomalyDisplay = new AnomalyDisplay();
             GameEvents.OnGameStart.Add(anomalyDisplay.HandleGameStart);
             GameEvents.OnGameEnd.Add(anomalyDisplay.ClearCard);
@@ -37,6 +36,7 @@ namespace HDTAnomalyDisplay
 
         public void OnUnload()
         {
+            Settings.Default.Save();
             anomalyDisplay.ClearCard();
             anomalyDisplay = null;
         }
