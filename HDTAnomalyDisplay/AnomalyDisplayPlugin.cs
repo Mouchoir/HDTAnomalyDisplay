@@ -11,20 +11,18 @@ namespace HDTAnomalyDisplay
 
         public string Description => "Displays the current Battlegrounds anomaly on your overlay";
 
-        public string ButtonText => "NO SETTINGS";
+        public string ButtonText => "SETTINGS";
         // public string ButtonText => Strings.GetLocalized("");
 
         public string Author => "Mouchoir & Tignus";
 
-        public Version Version => new Version(1, 0);
+        public Version Version => new Version(1, 1, 0);
 
         public MenuItem MenuItem => null;
 
         public AnomalyDisplay anomalyDisplay;
 
-        public void OnButtonPress()
-        {
-        }
+        public void OnButtonPress() => SettingsView.Flyout.IsOpen = true;
 
         public void OnLoad()
         {
@@ -32,12 +30,13 @@ namespace HDTAnomalyDisplay
             GameEvents.OnGameStart.Add(anomalyDisplay.HandleGameStart);
             GameEvents.OnGameEnd.Add(anomalyDisplay.ClearCard);
 
-            // Processing GameStart logic in case plugin was loaded after starting a game
+            // Processing GameStart logic in case plugin was loaded/unloaded after starting a game without restarting HDT
             anomalyDisplay.HandleGameStart();
         }
 
         public void OnUnload()
         {
+            Settings.Default.Save();
             anomalyDisplay.ClearCard();
             anomalyDisplay = null;
         }

@@ -8,12 +8,15 @@ using Hearthstone_Deck_Tracker.Utility.Logging;
 using Hearthstone_Deck_Tracker.API;
 using System.Windows.Controls;
 using Hearthstone_Deck_Tracker.Controls;
+using System.Windows.Media;
+using ControlzEx.Standard;
 
 namespace HDTAnomalyDisplay
 {
     public class AnomalyDisplay
     {
-        public CardImage cardImage;
+        public CardImage CardImage;
+        public static MoveCardManager MoveManager;
 
         public AnomalyDisplay()
         {
@@ -43,17 +46,30 @@ namespace HDTAnomalyDisplay
 
         public void InitializeView(int cardDbfId)
         {
-            if (cardImage == null)
+            // Do not recreate card if it already exists via a double call to HandleGameStart() (cf OnLoad)
+            if (CardImage == null)
             {
-                cardImage = new CardImage();
+                CardImage = new CardImage();
 
-                Core.OverlayCanvas.Children.Add(cardImage);
-                Canvas.SetBottom(cardImage, 50);
-                Canvas.SetLeft(cardImage, 0);
-                cardImage.Visibility = System.Windows.Visibility.Visible;
+                Core.OverlayCanvas.Children.Add(CardImage);
+                Canvas.SetTop(CardImage, Settings.Default.AnomalyCardTop);
+                Canvas.SetLeft(CardImage, Settings.Default.AnomalyCardLeft);
+                CardImage.Visibility = System.Windows.Visibility.Visible;
+
+                MoveManager = new MoveCardManager(CardImage);
+                Settings.Default.PropertyChanged += SettingsChanged;
+                SettingsChanged(null, null);
             }
 
-            cardImage.SetCardIdFromCard(Database.GetCardFromDbfId(cardDbfId, false));
+            CardImage.SetCardIdFromCard(Database.GetCardFromDbfId(cardDbfId, false));
+        }
+
+        // On scaling change update the card
+        private void SettingsChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            CardImage.RenderTransform = new ScaleTransform(Settings.Default.AnomalyCardScale / 100, Settings.Default.AnomalyCardScale / 100);
+            Canvas.SetTop(CardImage, Settings.Default.AnomalyCardTop);
+            Canvas.SetLeft(CardImage, Settings.Default.AnomalyCardLeft);
         }
 
         public async void HandleGameStart()
@@ -82,9 +98,15 @@ namespace HDTAnomalyDisplay
 
         public void ClearCard()
         {
-            cardImage.SetCardIdFromCard(null);
-            Core.OverlayCanvas.Children.Remove(cardImage);
-            cardImage = null;
+            CardImage.SetCardIdFromCard(null);
+            Core.OverlayCanvas.Children.Remove(CardImage);
+
+            MoveManager.Dispose();
+            Settings.Default.PropertyChanged -= SettingsChanged;
+
+            CardImage = null;
+            MoveManager = null;
+
         }
     }
 }
