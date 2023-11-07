@@ -37,12 +37,10 @@ namespace HDTAnomalyDisplay
             return settings;
         }
 
-        // Assuming the overlay is a UserControl named 'AnomalyOverlay'
-        private UserControl AnomalyOverlay;
-
         public SettingsView()
         {
             InitializeComponent();
+            BtnUnlock.Content = AnomalyDisplay.MoveManager.isUILocked() ? "Unlock overlay" : "Lock overlay";
             /*            LoadSettings();
             */
         }
@@ -55,6 +53,11 @@ namespace HDTAnomalyDisplay
                 // if MoveManager is null we should create a dummy Norgannon card that can be moved around to save the position
                 BtnUnlock.Content = AnomalyDisplay.MoveManager.ToggleUILockState() ? "Lock overlay" : "Unlock overlay";
             }
+
+        }
+
+        private void BtnReset_Click(object sender, RoutedEventArgs e)
+        {
 
         }
         /*        private void BtnUnlock_Click(object sender, RoutedEventArgs e)

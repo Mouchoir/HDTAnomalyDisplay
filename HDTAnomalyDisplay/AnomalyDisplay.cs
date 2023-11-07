@@ -58,11 +58,10 @@ namespace HDTAnomalyDisplay
 
                 MoveManager = new MoveCardManager(CardImage);
                 Settings.Default.PropertyChanged += SettingsChanged;
+                SettingsChanged(null, null);
             }
 
             CardImage.SetCardIdFromCard(Database.GetCardFromDbfId(cardDbfId, false));
-
-            SettingsChanged(null, null);
         }
   
         // On scaling change update the card
@@ -99,7 +98,9 @@ namespace HDTAnomalyDisplay
         {
             CardImage.SetCardIdFromCard(null);
             Core.OverlayCanvas.Children.Remove(CardImage);
+            
             MoveManager.Dispose();
+            Settings.Default.PropertyChanged -= SettingsChanged;
 
             CardImage = null;
             MoveManager = null;

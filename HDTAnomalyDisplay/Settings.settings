@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="AnomalyCardTop" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">600</Value>
+      <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="AnomalyCardLeft" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>

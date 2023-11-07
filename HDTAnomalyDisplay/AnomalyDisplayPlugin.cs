@@ -11,20 +11,18 @@ namespace HDTAnomalyDisplay
 
         public string Description => "Displays the current Battlegrounds anomaly on your overlay";
 
-        public string ButtonText => "NO SETTINGS";
+        public string ButtonText => "SETTINGS";
         // public string ButtonText => Strings.GetLocalized("");
 
         public string Author => "Mouchoir & Tignus";
 
-        public Version Version => new Version(1, 0);
+        public Version Version => new Version(1, 1, 0);
 
         public MenuItem MenuItem => null;
 
         public AnomalyDisplay anomalyDisplay;
 
-        public void OnButtonPress()
-        {
-        }
+        public void OnButtonPress() => SettingsView.Flyout.IsOpen = true;
 
         public void OnLoad()
         {

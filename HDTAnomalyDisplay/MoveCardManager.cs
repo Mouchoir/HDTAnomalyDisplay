@@ -33,10 +33,16 @@ namespace HDTAnomalyDisplay
             return false;
         }
 
+        public bool isUILocked()
+        {
+            return _mouseInput == null;
+        }
+
         public void Dispose()
         {
             _mouseInput?.Dispose();
             _mouseInput = null;
+            _selected = false;
         }
 
         private void MouseInputOnLmbDown(object sender, EventArgs eventArgs)

@@ -25,7 +25,7 @@ namespace HDTAnomalyDisplay {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("600")]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
         public double AnomalyCardTop {
             get {
                 return ((double)(this["AnomalyCardTop"]));
