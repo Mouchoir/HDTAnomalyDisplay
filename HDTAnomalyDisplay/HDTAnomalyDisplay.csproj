@@ -58,6 +58,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -70,6 +71,7 @@
   <ItemGroup>
     <Compile Include="AnomalyDisplay.cs" />
     <Compile Include="AnomalyDisplayPlugin.cs" />
+    <Compile Include="MoveCardManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -28,11 +28,12 @@ namespace HDTAnomalyDisplay
 
         public void OnLoad()
         {
+            Settings.Default.Save();
             anomalyDisplay = new AnomalyDisplay();
             GameEvents.OnGameStart.Add(anomalyDisplay.HandleGameStart);
             GameEvents.OnGameEnd.Add(anomalyDisplay.ClearCard);
 
-            // Processing GameStart logic in case plugin was loaded after starting a game
+            // Processing GameStart logic in case plugin was loaded/unloaded after starting a game without restarting HDT
             anomalyDisplay.HandleGameStart();
         }
 

@@ -25,22 +25,22 @@ namespace HDTAnomalyDisplay {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50")]
-        public int AnomalyCardBottom {
+        [global::System.Configuration.DefaultSettingValueAttribute("600")]
+        public double AnomalyCardTop {
             get {
-                return ((int)(this["AnomalyCardBottom"]));
+                return ((double)(this["AnomalyCardTop"]));
             }
             set {
-                this["AnomalyCardBottom"] = value;
+                this["AnomalyCardTop"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int AnomalyCardLeft {
+        public double AnomalyCardLeft {
             get {
-                return ((int)(this["AnomalyCardLeft"]));
+                return ((double)(this["AnomalyCardLeft"]));
             }
             set {
                 this["AnomalyCardLeft"] = value;
@@ -49,7 +49,7 @@ namespace HDTAnomalyDisplay {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
         public double AnomalyCardScale {
             get {
                 return ((double)(this["AnomalyCardScale"]));
