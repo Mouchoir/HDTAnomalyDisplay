@@ -22,9 +22,9 @@ Once installed, the plugin will automatically display anomaly tooltips within th
 
 We're constantly looking to improve the plugin. Here's what's on the horizon:
 
-- [ ] **Move Card**: Add the ability to reposition the anomaly tooltip on the overlay to suit your stream's design.
+- [X] **Move Card**: Add the ability to reposition the anomaly tooltip on the overlay to suit your stream's design.
 - [ ] **Resize Card**: Introduce resizable tooltips to accommodate different screen sizes and resolutions.
-- [ ] **Localization**: Expand the plugin's language support to include multiple languages, defaulting to the language set in HDT's options.
+- [X] **Localization**: Expand the plugin's language support to include multiple languages, defaulting to the language set in HDT's options.
 - [ ] **Autoupdate**: Implement an auto-update mechanism to ensure the plugin is always up-to-date with the latest features and anomaly information.
 
 ## Contributions
