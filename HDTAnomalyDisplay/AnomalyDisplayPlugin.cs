@@ -12,7 +12,6 @@ namespace HDTAnomalyDisplay
         public string Description => "Displays the current Battlegrounds anomaly on your overlay";
 
         public string ButtonText => "SETTINGS";
-        // public string ButtonText => Strings.GetLocalized("");
 
         public string Author => "Mouchoir & Tignus";
 

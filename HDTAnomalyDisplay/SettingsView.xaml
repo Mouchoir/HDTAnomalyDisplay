@@ -23,6 +23,8 @@
             </Style>
         </StackPanel.Resources>
         <Button Name="BtnUnlock" Width="150" Margin="0,30,0,5" Content="Unlock Overlay" Click="BtnUnlock_Click" />
+        <Label Content="(Unlocking while not ingame will display a temporary card)" Width="290" FontSize="10" HorizontalContentAlignment="Center" />
+
         <Button Name="BtnReset" Width="150" Margin="0,5,0,30" Content="Reset Position" Click="BtnReset_Click" />
         <DockPanel Style="{StaticResource SliderPanelStyle}" Width="295">
             <Label Content="Scale" Width="50" Margin="20,0,0,0" />

@@ -1,26 +1,31 @@
 ﻿using Hearthstone_Deck_Tracker;
 using Core = Hearthstone_Deck_Tracker.API.Core;
 using System;
-using System.Windows.Controls;
 using System.Windows;
 using Hearthstone_Deck_Tracker.Controls;
-using Hearthstone_Deck_Tracker.Utility;
 
 namespace HDTAnomalyDisplay
 {
     public class MoveCardManager
     {
         private User32.MouseInput _mouseInput;
-        private CardImage _card;
+        private readonly CardImage _card;
+        public bool IsUnlocked { get; private set; }
+
 
         private double xMouseDeltaFromCard;
         private double yMouseDeltaFromCard;
 
         private bool _selected;
 
-        public MoveCardManager(CardImage cardImageToMove)
+        public MoveCardManager(CardImage cardImageToMove, bool isUnlocked)
         {
             _card = cardImageToMove;
+            IsUnlocked = isUnlocked;
+            if (IsUnlocked)
+            {
+                ToggleUILockState();
+            }
         }
 
         public bool ToggleUILockState()
@@ -31,10 +36,15 @@ namespace HDTAnomalyDisplay
                 _mouseInput.LmbDown += MouseInputOnLmbDown;
                 _mouseInput.LmbUp += MouseInputOnLmbUp;
                 _mouseInput.MouseMoved += MouseInputOnMouseMoved;
-                return true;
+                IsUnlocked = true;
             }
-            Dispose();
-            return false;
+            else
+            {
+                Dispose();
+                IsUnlocked = false;
+            }
+
+            return IsUnlocked;
         }
 
         public bool isUILocked()

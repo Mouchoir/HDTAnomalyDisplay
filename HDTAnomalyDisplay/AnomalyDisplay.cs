@@ -56,7 +56,7 @@ namespace HDTAnomalyDisplay
                 Canvas.SetLeft(CardImage, Settings.Default.AnomalyCardLeft);
                 CardImage.Visibility = System.Windows.Visibility.Visible;
 
-                MoveManager = new MoveCardManager(CardImage);
+                MoveManager = new MoveCardManager(CardImage, SettingsView.IsUnlocked);
                 Settings.Default.PropertyChanged += SettingsChanged;
                 SettingsChanged(null, null);
             }
@@ -100,13 +100,13 @@ namespace HDTAnomalyDisplay
         {
             CardImage.SetCardIdFromCard(null);
             Core.OverlayCanvas.Children.Remove(CardImage);
-
-            MoveManager.Dispose();
-            Settings.Default.PropertyChanged -= SettingsChanged;
-
             CardImage = null;
+
+            Log.Info("Destroying the MoveManager...");
+            MoveManager.Dispose();
             MoveManager = null;
 
+            Settings.Default.PropertyChanged -= SettingsChanged;
         }
     }
 }
