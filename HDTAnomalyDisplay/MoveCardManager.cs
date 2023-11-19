@@ -69,7 +69,9 @@ namespace HDTAnomalyDisplay
             }
 
             var pos = User32.GetMousePos();
-            var p = Core.OverlayCanvas.PointFromScreen(new Point(pos.X-100, pos.Y-200));
+            double mouseVerticalPositionAdjust = (220 * Settings.Default.AnomalyCardScale / 100);
+            double mouseHorizontalPositionAdjust = (120 * Settings.Default.AnomalyCardScale / 100);
+            var p = Core.OverlayCanvas.PointFromScreen(new Point(pos.X - mouseHorizontalPositionAdjust, pos.Y - mouseVerticalPositionAdjust));
 
             // TODO check max height and width, does not work yet
             if (p.Y < 0)
