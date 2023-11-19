@@ -1,23 +1,31 @@
 ﻿using Hearthstone_Deck_Tracker;
 using Core = Hearthstone_Deck_Tracker.API.Core;
 using System;
-using System.Windows.Controls;
 using System.Windows;
 using Hearthstone_Deck_Tracker.Controls;
-using Hearthstone_Deck_Tracker.Utility;
 
 namespace HDTAnomalyDisplay
 {
     public class MoveCardManager
     {
         private User32.MouseInput _mouseInput;
-        private CardImage _card;
+        private readonly CardImage _card;
+        public bool IsUnlocked { get; private set; }
+
+
+        private double xMouseDeltaFromCard;
+        private double yMouseDeltaFromCard;
 
         private bool _selected;
 
-        public MoveCardManager(CardImage cardImageToMove)
+        public MoveCardManager(CardImage cardImageToMove, bool isUnlocked)
         {
             _card = cardImageToMove;
+            IsUnlocked = isUnlocked;
+            if (IsUnlocked)
+            {
+                ToggleUILockState();
+            }
         }
 
         public bool ToggleUILockState()
@@ -28,10 +36,15 @@ namespace HDTAnomalyDisplay
                 _mouseInput.LmbDown += MouseInputOnLmbDown;
                 _mouseInput.LmbUp += MouseInputOnLmbUp;
                 _mouseInput.MouseMoved += MouseInputOnMouseMoved;
-                return true;
+                IsUnlocked = true;
             }
-            Dispose();
-            return false;
+            else
+            {
+                Dispose();
+                IsUnlocked = false;
+            }
+
+            return IsUnlocked;
         }
 
         public bool isUILocked()
@@ -69,27 +82,9 @@ namespace HDTAnomalyDisplay
             }
 
             var pos = User32.GetMousePos();
-            var p = Core.OverlayCanvas.PointFromScreen(new Point(pos.X, pos.Y));
-
-            // TODO check max height and width, does not work yet
-            if (p.Y < 0)
-            {
-                p.Y = 0;
-            }
-            else if (p.Y > Core.OverlayCanvas.Height)
-            {
-
-                p.Y = Core.OverlayCanvas.Height;
-            }
-
-            if (p.X < 0)
-            {
-                p.X = 0;
-            }
-            else if (p.X > Core.OverlayCanvas.Width)
-            {
-                p.X = Core.OverlayCanvas.Width;
-            }
+            double mouseVerticalPositionAdjust = (yMouseDeltaFromCard * Settings.Default.AnomalyCardScale / 100);
+            double mouseHorizontalPositionAdjust = (xMouseDeltaFromCard * Settings.Default.AnomalyCardScale / 100);
+            var p = Core.OverlayCanvas.PointFromScreen(new Point(pos.X - mouseHorizontalPositionAdjust, pos.Y - mouseVerticalPositionAdjust));
 
             Settings.Default.AnomalyCardTop = p.Y;
             Settings.Default.AnomalyCardLeft = p.X;
@@ -98,6 +93,9 @@ namespace HDTAnomalyDisplay
         private bool PointInsideControl(Point p, FrameworkElement control)
         {
             var pos = control.PointFromScreen(p);
+            xMouseDeltaFromCard = pos.X;
+            yMouseDeltaFromCard = pos.Y;
+
             return pos.X > 0 && pos.X < control.ActualWidth && pos.Y > 0 && pos.Y < control.ActualHeight;
         }
     }

@@ -1,5 +1,4 @@
-
-# HDT Anomaly Display Plugin
+ # HDT Anomaly Display Plugin
 
 Enhance your Hearthstone Battlegrounds streaming experience with the HDT Anomaly Display Plugin. This tool overlays information about "anomalies" directly onto your stream, saving you from the hassle of manual updates. It's designed to integrate smoothly with Hearthstone Deck Tracker (HDT), providing both streamers and their audience with real-time game insights.
 
@@ -7,7 +6,11 @@ Enhance your Hearthstone Battlegrounds streaming experience with the HDT Anomaly
 
 - **Automatic Anomaly Detection**: The plugin automatically detects and displays anomalies as they appear in the game, keeping your audience in the loop without any extra effort on your part.
 - **Seamless Overlay Integration**: The anomaly information is displayed directly in the Hearthstone Deck Tracker overlay, ensuring a clean and unobtrusive addition to your stream.
+- **Move Card**: Reposition the anomaly tooltip on the overlay to suit your stream's design.
+- **Resize Card**: Resizable tooltips to accommodate different screen sizes and resolutions.
+- **Localization**: Display the anomaly card in your own language using HDT settings (Options > Tracker > General > Card language).
 - **Plug-and-Play**: With its user-friendly setup, all you have to do is enable the plugin and you're good to go—no complicated configurations needed.
+
 
 ## Usage
 
@@ -17,15 +20,6 @@ To install the HDT Anomaly Display Plugin:
 2. Drag and drop the file onto the HDT plugins settings window, or manually extract the `.dll` file to your HDT plugin folder (typically located at `%AppData%\HearthstoneDeckTracker\Plugins`).
 
 Once installed, the plugin will automatically display anomaly tooltips within the Hearthstone Deck Tracker overlay during your game sessions.
-
-## Roadmap
-
-We're constantly looking to improve the plugin. Here's what's on the horizon:
-
-- [X] **Move Card**: Add the ability to reposition the anomaly tooltip on the overlay to suit your stream's design.
-- [ ] **Resize Card**: Introduce resizable tooltips to accommodate different screen sizes and resolutions.
-- [X] **Localization**: Expand the plugin's language support to include multiple languages, defaulting to the language set in HDT's options.
-- [ ] **Autoupdate**: Implement an auto-update mechanism to ensure the plugin is always up-to-date with the latest features and anomaly information.
 
 ## Contributions
 

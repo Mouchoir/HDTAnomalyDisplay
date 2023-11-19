@@ -6,8 +6,31 @@
              xmlns:local="clr-namespace:HDTAnomalyDisplay"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button Name="BtnUnlock" Width="150" Content="Unlock Overlay" Click="BtnUnlock_Click" />
-        <Button Name="BtnReset" Width="150" Content="Reset Position" Click="BtnReset_Click" />
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Width="290" Margin="5,5,5,5" Height="290">
+        <StackPanel.Resources>
+            <Style x:Key="SliderPanelStyle" TargetType="DockPanel">
+                <Setter Property="Margin" Value="0,0"/>
+                <Setter Property="Width" Value="300"/>
+            </Style>
+            <Style x:Key="SliderStyle" TargetType="Slider">
+                <Setter Property="IsSnapToTickEnabled" Value="True"/>
+                <Setter Property="TickFrequency" Value="1"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Width" Value="150"/>
+                <Setter Property="LargeChange" Value="10"/>
+                <Setter Property="Minimum" Value="75"/>
+                <Setter Property="Maximum" Value="250"/>
+            </Style>
+        </StackPanel.Resources>
+        <Button Name="BtnUnlock" Width="150" Margin="0,30,0,5" Content="Unlock Overlay" Click="BtnUnlock_Click" />
+        <Label Content="(Unlocking while not ingame will display a temporary card)" Width="290" FontSize="10" HorizontalContentAlignment="Center" />
+
+        <Button Name="BtnReset" Width="150" Margin="0,5,0,30" Content="Reset Position" Click="BtnReset_Click" />
+        <DockPanel Style="{StaticResource SliderPanelStyle}" Width="295">
+            <Label Content="Scale" Width="50" Margin="20,0,0,0" />
+            <Slider x:Name="SliderScale" DockPanel.Dock="Top"
+                    Style="{StaticResource SliderStyle}"
+                    Value="{Binding AnomalyCardScale, Source={x:Static local:Settings.Default}}"/>
+        </DockPanel>
     </StackPanel>
 </UserControl>
