@@ -47,8 +47,12 @@ namespace HDTAnomalyDisplay
         {
             if (AnomalyDisplay.MoveManager != null)
             {
-                // if MoveManager is null we should create a dummy Norgannon card that can be moved around to save the position
                 BtnUnlock.Content = AnomalyDisplay.MoveManager.ToggleUILockState() ? "Lock overlay" : "Unlock overlay";
+            }
+            else
+            {
+                // No ongoing game, create a dummy Norgannon card that can be moved around to save the position
+
             }
 
         }
