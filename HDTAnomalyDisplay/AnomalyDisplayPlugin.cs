@@ -15,7 +15,7 @@ namespace HDTAnomalyDisplay
 
         public string Author => "Mouchoir & Tignus";
 
-        public Version Version => new Version(1, 1, 0);
+        public Version Version => new Version(1, 2, 0);
 
         public MenuItem MenuItem => CreateMenu();
 
