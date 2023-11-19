@@ -6,8 +6,36 @@
              xmlns:local="clr-namespace:HDTAnomalyDisplay"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Width="400">
+        <StackPanel.Resources>
+            <Style x:Key="SliderPanelStyle" TargetType="DockPanel">
+                <Setter Property="Margin" Value="10,0"/>
+                <Setter Property="Width" Value="300"/>
+            </Style>
+            <Style x:Key="SliderStyle" TargetType="Slider">
+                <Setter Property="IsSnapToTickEnabled" Value="True"/>
+                <Setter Property="TickFrequency" Value="1"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Width" Value="150"/>
+                <Setter Property="LargeChange" Value="10"/>
+                <Setter Property="Minimum" Value="50"/>
+                <Setter Property="Maximum" Value="200"/>
+            </Style>
+            <Style x:Key="SliderTextStyle" TargetType="TextBlock">
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="TextAlignment" Value="Right"/>
+                <Setter Property="Width" Value="40"/>
+                <Setter Property="Margin" Value="0,0,10,0"/>
+            </Style>
+        </StackPanel.Resources>
         <Button Name="BtnUnlock" Width="150" Content="Unlock Overlay" Click="BtnUnlock_Click" />
         <Button Name="BtnReset" Width="150" Content="Reset Position" Click="BtnReset_Click" />
+        <DockPanel Style="{StaticResource SliderPanelStyle}">
+            <Slider x:Name="SliderScale" DockPanel.Dock="Right"
+                    Style="{StaticResource SliderStyle}"
+                    Value="{Binding Scale, Source={x:Static local:Settings.Default}}" Width="174"/>
+            <Label Content="Scale" Width="100" />
+        </DockPanel>
     </StackPanel>
 </UserControl>
