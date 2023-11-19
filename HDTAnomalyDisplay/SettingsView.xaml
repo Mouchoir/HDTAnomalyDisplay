@@ -18,8 +18,8 @@
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="Width" Value="150"/>
                 <Setter Property="LargeChange" Value="10"/>
-                <Setter Property="Minimum" Value="50"/>
-                <Setter Property="Maximum" Value="200"/>
+                <Setter Property="Minimum" Value="75"/>
+                <Setter Property="Maximum" Value="250"/>
             </Style>
         </StackPanel.Resources>
         <Button Name="BtnUnlock" Width="150" Margin="0,30,0,5" Content="Unlock Overlay" Click="BtnUnlock_Click" />
@@ -28,7 +28,7 @@
             <Label Content="Scale" Width="50" Margin="20,0,0,0" />
             <Slider x:Name="SliderScale" DockPanel.Dock="Top"
                     Style="{StaticResource SliderStyle}"
-                    Value="{Binding Scale, Source={x:Static local:Settings.Default}}"/>
+                    Value="{Binding AnomalyCardScale, Source={x:Static local:Settings.Default}}"/>
         </DockPanel>
     </StackPanel>
 </UserControl>

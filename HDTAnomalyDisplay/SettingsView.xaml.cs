@@ -57,43 +57,8 @@ namespace HDTAnomalyDisplay
         {
             Settings.Default.AnomalyCardLeft = 0;
             Settings.Default.AnomalyCardTop = 630;
+            Settings.Default.AnomalyCardScale = 100;
             Settings.Default.Save();
         }
-        /*        private void BtnUnlock_Click(object sender, RoutedEventArgs e)
-                {
-                    IsOverlayLocked = !IsOverlayLocked;
-                    UpdateLockStateUI();
-                    ToggleOverlayDraggable(IsOverlayLocked);
-                }
-
-                private void BtnReset_Click(object sender, RoutedEventArgs e)
-                {
-                    ResetOverlayPosition();
-                }
-
-                private void LoadSettings()
-                {
-                    var position = new Point(Settings.Default.AnomalyCardLeft, Settings.Default.AnomalyCardTop);
-                    var scale = Settings.Default.AnomalyCardScale;
-                    ApplyOverlaySettings(position, scale);
-                }
-
-                private void ResetOverlayPosition()
-                {
-                    var defaultPosition = GetDefaultOverlayPosition();
-                    ApplyOverlayPosition(defaultPosition);
-                }
-
-                private Point GetDefaultOverlayPosition()
-                {
-                    return new Point(0, 50);
-                }
-
-                private void UpdateLockStateUI()
-                {
-                    BtnUnlock.Content = IsOverlayLocked ? "Unlock Overlay" : "Lock Overlay";
-                }*/
-
-
     }
 }
