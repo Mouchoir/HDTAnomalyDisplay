@@ -13,6 +13,9 @@ namespace HDTAnomalyDisplay
         private User32.MouseInput _mouseInput;
         private CardImage _card;
 
+        private double xMouseDeltaFromCard;
+        private double yMouseDeltaFromCard;
+
         private bool _selected;
 
         public MoveCardManager(CardImage cardImageToMove)
@@ -69,8 +72,8 @@ namespace HDTAnomalyDisplay
             }
 
             var pos = User32.GetMousePos();
-            double mouseVerticalPositionAdjust = (220 * Settings.Default.AnomalyCardScale / 100);
-            double mouseHorizontalPositionAdjust = (120 * Settings.Default.AnomalyCardScale / 100);
+            double mouseVerticalPositionAdjust = (yMouseDeltaFromCard * Settings.Default.AnomalyCardScale / 100);
+            double mouseHorizontalPositionAdjust = (xMouseDeltaFromCard * Settings.Default.AnomalyCardScale / 100);
             var p = Core.OverlayCanvas.PointFromScreen(new Point(pos.X - mouseHorizontalPositionAdjust, pos.Y - mouseVerticalPositionAdjust));
 
             Settings.Default.AnomalyCardTop = p.Y;
@@ -80,6 +83,9 @@ namespace HDTAnomalyDisplay
         private bool PointInsideControl(Point p, FrameworkElement control)
         {
             var pos = control.PointFromScreen(p);
+            xMouseDeltaFromCard = pos.X;
+            yMouseDeltaFromCard = pos.Y;
+
             return pos.X > 0 && pos.X < control.ActualWidth && pos.Y > 0 && pos.Y < control.ActualHeight;
         }
     }
