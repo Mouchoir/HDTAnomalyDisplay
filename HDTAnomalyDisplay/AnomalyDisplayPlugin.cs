@@ -18,8 +18,19 @@ namespace HDTAnomalyDisplay
 
         public Version Version => new Version(1, 1, 0);
 
-        public MenuItem MenuItem => null;
+        public MenuItem MenuItem => CreateMenu();
 
+        private MenuItem CreateMenu()
+        {
+            MenuItem settingsMenuItem = new MenuItem { Header = "Anomaly Display Settings" };
+
+            settingsMenuItem.Click += (sender, args) =>
+            {
+                SettingsView.Flyout.IsOpen = true;
+            };
+
+            return settingsMenuItem;
+        }
         public AnomalyDisplay anomalyDisplay;
 
         public void OnButtonPress() => SettingsView.Flyout.IsOpen = true;
