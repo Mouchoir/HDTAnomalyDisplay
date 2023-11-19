@@ -69,7 +69,7 @@ namespace HDTAnomalyDisplay
             }
 
             var pos = User32.GetMousePos();
-            var p = Core.OverlayCanvas.PointFromScreen(new Point(pos.X, pos.Y));
+            var p = Core.OverlayCanvas.PointFromScreen(new Point(pos.X-100, pos.Y-200));
 
             // TODO check max height and width, does not work yet
             if (p.Y < 0)
